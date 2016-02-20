@@ -1,19 +1,26 @@
+#headerstyle {
+	font-family: Georgia, serif;
+	color: #222222;
+}
+
+.col-md-3 > img {
+	display:inline-block;
+	overflow:hidden;
+	min-height:200px;
+	height:200px;
+	opacity:50%;
+}
+
+nav {
+	font-family: Georgia, serif;
+	text-transform: uppercase;
+}
+
 body {
-	background-color: #333333;
-}
-
-h1 {
-	text-align: center;
-	color: white;
-}
-
-div {
-	text-align: justify;
+	background-color: #eeeeee;
 }
 
 p {
-	color: #eeeeee;
+	color: #444444;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-	padding-left: 2cm;
-	padding-right: 2cm;
 }
