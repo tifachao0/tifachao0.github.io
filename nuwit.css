@@ -1,26 +1,35 @@
 #headerstyle {
 	font-family: Georgia, serif;
-	color: #222222;
+	color: #eeeeee;
 }
 
-.col-md-3 > img {
-	display:inline-block;
-	overflow:hidden;
-	min-height:200px;
-	height:200px;
-	opacity:50%;
+.jumbotron {
+	background:transparent;
+}
+
+.dropdown-menu {
+  width: 100%; 
+}
+
+.btn{
+ width: 100%;
 }
 
 nav {
+	font-size:large;
 	font-family: Georgia, serif;
 	text-transform: uppercase;
 }
 
+a {
+	color:#00cccc;
+}
+
 body {
-	background-color: #eeeeee;
+	background-color: #444444;
 }
 
 p {
-	color: #444444;
+	color: #cccccc;
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
