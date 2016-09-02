@@ -17,7 +17,7 @@
 var GAME_WIDTH = 600;
 var GAME_HEIGHT = 600;
 
-var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.CANVAS, '', { preload: preload, create: create, /*update: update*/ });
+var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
 var nexus;
 var player;
 var playerDest;
@@ -46,7 +46,7 @@ function create() {
     
     playerDest = new Phaser.Point(game.world.centerX, game.world.centerY);
 }
-/*
+    
 function update() {
     
     if (game.input.mousePointer.isDown)
@@ -62,7 +62,7 @@ function update() {
         game.physics.arcade.moveToXY(player, playerDest.x, playerDest.y, 120);
     }   
 }
-*/
+    
 </script>
 
 </body>
