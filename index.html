@@ -1,61 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8"> 
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" href="nuwit.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-	  
-  <div class="jumbotron page-header text-center">
-	  <h1 id=headerstyle>Tiffany Chao</h1>
-	  <h5 id=headerstyle>Illustrations and Sketches</h5>  
-  </div>
-  
-  <nav class="navbar" role="navigation">
-    <div class="container-fluid">
-		<div class="row">
-			<div class="col-md-offset-2 col-md-8">
-        		<ul class="nav nav-pills nav-justified">
-          		  	<li><a href="index.html">About</a></li>
-          			<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" role="button">Gallery</a>
-						<ul class="dropdown-menu">
-							<li><a href="illustrations.html">Illustrations</a></li>
-							<li><a href="concepts.html">Sketches and Concepts</a></li>
-						</ul>
-					</li>
-        	 	</ul>
-      	    </div>
-   	 	</div>
-	</div>
-  </nav>
-  
-  <div class="container">
-    <div class="row">
-  	  <div class="col-md-offset-1 col-md-10 text-center">
-		  <div class="row">
-			  <h3>Education</h3>
-			  <p>Northeastern University | Boston, MA | Candidate for a Bachelor's in Computer Science and Interactive Media</p>
-			  <h3>Tools of the Trade</h3>
-			  <div class="row">
-				  <div class="col-md-6">
-					  <h4>Traditional</h4>
-					  <p>Pigma Micron pens | Copic sketch markers</p>
-				  </div>
-				  <div class="col-md-6">
-					  <h4>Digital</h4>
-					  <p>Photoshop CS6 | Bamboo Capture Tablet</p>
-				  </div>
-	     	 	</div>
-  			  <h3>Contact Information</h3>
-  			  <p>chao.ti@husky.neu.edu</p>
-			</div>
-		</div>
-  	</div> 
-  </div>
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Teemo Defense!</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
 
-  </body>
+<script type="text/javascript">
+    
+var GAME_WIDTH = 600;
+var GAME_HEIGHT = 600;
+
+var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.CANVAS, '', { preload: preload, create: create, /*update: update*/ });
+var nexus;
+var player;
+var playerDest;
+    
+function preload() {
+    game.load.image('nexus', 'assets/nexus.png');
+    game.load.image('teemo', 'assets/teemo.png');
+}
+
+function create() {
+    
+    game.stage.backgroundColor = '#777777';
+    
+    nexus = game.add.sprite(0, 0, 'nexus');
+    player = game.add.sprite(0, 0, 'teemo');
+    
+    player.anchor.set(0.5);
+    player.scale.set(2);
+    
+    player.alignIn(game.world.bounds, Phaser.CENTER);
+    nexus.alignIn(game.world.bounds, Phaser.BOTTOM_LEFT);
+    
+    game.physics.arcade.enable(player);
+    player.body.allowGravity = false;
+    player.body.collideWorldBounds = true;
+    
+    playerDest = new Phaser.Point(game.world.centerX, game.world.centerY);
+}
+/*
+function update() {
+    
+    if (game.input.mousePointer.isDown)
+    {
+        playerDest = new Phaser.Point(game.input.mousePointer.x, game.input.mousePointer.y);
+    }
+    
+    if (Math.abs(player.x - playerDest.x) <= 5 && 
+        Math.abs(player.y - playerDest.y) <= 5)
+    {
+        player.body.velocity.setTo(0, 0);
+    } else {
+        game.physics.arcade.moveToXY(player, playerDest.x, playerDest.y, 120);
+    }   
+}
+*/
+</script>
+
+</body>
 </html>
