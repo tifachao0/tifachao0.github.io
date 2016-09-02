@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
 	<meta charset="UTF-8" />
-	<title>Teemo Defense!</title>
+	<title>Defend the Nexus!</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
     <style type="text/css">
         body {
@@ -17,25 +17,33 @@
 var GAME_WIDTH = 600;
 var GAME_HEIGHT = 600;
 
-var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+    
 var nexus;
+var nexusHealth;
+    
+var minions;
+    
 var player;
 var playerDest;
     
 function preload() {
     game.load.image('nexus', 'assets/nexus.png');
+    game.load.image('minion', 'assets/melee_minion.png');
     game.load.image('teemo', 'assets/teemo.png');
 }
 
-function create() {
-    
-    game.stage.backgroundColor = '#777777';
+function create() {  
+    game.stage.backgroundColor = '#555555';
     
     nexus = game.add.sprite(0, 0, 'nexus');
+    minions = game.add.group();
     player = game.add.sprite(0, 0, 'teemo');
     
     player.anchor.set(0.5);
     player.scale.set(2);
+    
+    minions.enableBody = true;
     
     player.alignIn(game.world.bounds, Phaser.CENTER);
     nexus.alignIn(game.world.bounds, Phaser.BOTTOM_LEFT);
@@ -44,11 +52,16 @@ function create() {
     player.body.allowGravity = false;
     player.body.collideWorldBounds = true;
     
+    game.physics.arcade.enable(nexus);
+    nexus.immovable = true;
+    nexus.body.moves = false;
+    
     playerDest = new Phaser.Point(game.world.centerX, game.world.centerY);
+    
+    game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, spawnMinion, this);
 }
     
-function update() {
-    
+function update() {  
     if (game.input.mousePointer.isDown)
     {
         playerDest = new Phaser.Point(game.input.mousePointer.x, game.input.mousePointer.y);
@@ -60,9 +73,21 @@ function update() {
         player.body.velocity.setTo(0, 0);
     } else {
         game.physics.arcade.moveToXY(player, playerDest.x, playerDest.y, 120);
-    }   
-}
+    }
     
+    minions.forEachAlive(function(minion) {
+        game.physics.arcade.moveToXY(minion, nexus.x, nexus.y, 100);
+        }
+    )
+    game.physics.arcade.collide(player, nexus);
+}
+   
+function spawnMinion() {
+    minion = minions.create(0, 0, 'minion');
+    minion.scale.set(0.5);
+    minion.alignIn(game.world.bounds, Phaser.TOP_RIGHT);
+    
+}
 </script>
 
 </body>
