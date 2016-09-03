@@ -6,15 +6,38 @@
 	<script type="text/javascript" src="js/phaser.min.js"></script>
     <style type="text/css">
         body {
-            margin: 0;
+            margin : 0;
+            text-align : center; 
+            vertical-align : middle;
+        }
+        canvas {   
+            display : block;   
+            margin : auto;
         }
     </style>
 </head>
 <body>
+    
+<h1>DEFEND THE NEXUS!</h1>
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(600, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(600, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
+    
+var player;
+    
+var nexus;
+var nexusHealthDisplayPrefix = 'Nexus Health: ';
+var nexusHealthDisplay;
+    
+var minions;
+var minionsTotal = 18;
+var minionsRemaining = minionsTotal;
+var minionsRemainingDisplayPrefix = 'Minions Remaining: ';
+var minionsRemainingDisplay;
+var minionsKilledOrAtNexus = 0;
+
+var darts;
     
 function preload() {
     game.load.image('nexus', 'assets/nexus.png');
@@ -39,17 +62,18 @@ function create() {
     
     nexus.anchor.setTo(0.5);
     nexus.alignIn(game.world.bounds, Phaser.BOTTOM_LEFT);
+    nexus.health = 5;
     
     // start physics engine ///////////////////////////////////////////////////
-    game.physics.arcade.enable(player);
+    game.physics.enable([player,nexus], Phaser.Physics.ARCADE);
     player.body.allowGravity = false;
     player.body.collideWorldBounds = true;
     
-    minions.enableBody = true;
-    
-    game.physics.arcade.enable(nexus);
     nexus.immovable = true;
     nexus.body.moves = false;
+    
+    minions.enableBody = true;
+    minions.physicsBodyType = Phaser.Physics.ARCADE;
     
     // darts config ///////////////////////////////////////////////////////////
     darts.bulletSpeed = 250;
@@ -59,10 +83,20 @@ function create() {
     darts.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
     dartButton = game.input.keyboard.addKey(Phaser.KeyCode.Q);
     
-    game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, spawnMinion, this);
+    // text display ///////////////////////////////////////////////////////////
+    nexusHealthDisplay = game.add.text(0, 0, nexusHealthDisplayPrefix + nexus.health.toString(), { font: "20px Arial", fill: '#ffffff' });
+    minionsRemainingDisplay = game.add.text(0, 0, minionsRemainingDisplayPrefix + minionsRemaining.toString(), { font: "20px Arial", fill: '#ffff00' });
+    
+    nexusHealthDisplay.alignIn(game.world.bounds, Phaser.TOP_LEFT);
+    minionsRemainingDisplay.alignTo(nexusHealthDisplay, Phaser.BOTTOM_LEFT);
+    game.time.events.repeat(Phaser.Timer.SECOND * 2, minionsRemaining, spawnMinion, this);
 }
     
-function update() { 
+function update() {
+    
+    if (nexus.health == 0) {
+        
+    }
     // player updates /////////////////////////////////////////////////////////
     if (game.input.mousePointer.isDown){
         playerDest = new Phaser.Point(game.input.mousePointer.x, game.input.mousePointer.y);
@@ -75,35 +109,59 @@ function update() {
         game.physics.arcade.moveToXY(player, playerDest.x, playerDest.y, 120);
     }
     
+    // weapon updates /////////////////////////////////////////////////////////
+    darts.fireAngle = setDartFireAngle();
+    if (dartButton.isDown) {
+        darts.fire();
+    }
+    
     // minion updates /////////////////////////////////////////////////////////
     minions.forEachAlive(function(minion) {
         if (Math.abs(minion.x - nexus.x) <= 3 && 
             Math.abs(minion.y - nexus.y) <= 3) {
-            minion.body.velocity.setTo(0, 0);
+            if (!minion.isAtNexus) {
+                nexus.damage(1);
+                nexusHealthDisplay.setText(nexusHealthDisplayPrefix + nexus.health.toString());
+                minion.body.velocity.setTo(0, 0);
+                minion.isAtNexus = true;
+                minionsKilledOrAtNexus += 1;
+            }
         } else {
             game.physics.arcade.moveToXY(minion, nexus.x, nexus.y, 100); 
         }
     })
-    
-    // weapon updates /////////////////////////////////////////////////////////
-    darts.fireAngle = setDartFireAngle();
-    /*
-    darts.forEachAlive(function(dart) {
-        dart.angle = 
-    }) 
-    */
-    if (dartButton.isDown) {
-        darts.fire();
-    }
 
+    // state //////////////////////////////////////////////////////////////////
+    if (minionsKilledOrAtNexus == minionsTotal && nexus.health > 0) {
+        nexusHealthDisplay.setText('VICTORY');
+    }
+    else if (nexus.health == 0) {
+        nexusHealthDisplay.setText('DEFEAT');
+    }
     game.physics.arcade.collide(player, nexus);
+    game.physics.arcade.overlap(darts.bullets, minions, dartMinionCollisionHandler, null, this);
 }
-   
+ 
+///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// HELPERS ///////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+function dartMinionCollisionHandler(dart, minion) {
+    dart.kill();
+    if (!minion.isAtNexus) {
+        minion.kill();
+        minionsKilledOrAtNexus += 1;
+    }
+}
+    
 function spawnMinion() {
     minion = minions.create(0, 0, 'minion');
+    minion.isAtNexus = false;
     minion.anchor.setTo(0.5);
     minion.scale.set(0.5);
     minion.alignIn(game.world.bounds, Phaser.TOP_RIGHT);
+    
+    minionsRemaining -= 1;
+    minionsRemainingDisplay.setText(minionsRemainingDisplayPrefix + minionsRemaining.toString())
 }
     
 function setDartFireAngle() {
