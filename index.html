@@ -36,21 +36,24 @@ function preload() {
 function create() {  
     game.stage.backgroundColor = '#555555';
     
+    // add sprites
     nexus = game.add.sprite(0, 0, 'nexus');
     minions = game.add.group();
     player = game.add.sprite(0, 0, 'teemo');
     
     player.anchor.set(0.5);
     player.scale.set(2);
-    
-    minions.enableBody = true;
-    
     player.alignIn(game.world.bounds, Phaser.CENTER);
+    
+    nexus.anchor.setTo(0.5);
     nexus.alignIn(game.world.bounds, Phaser.BOTTOM_LEFT);
     
+    // start physics engine
     game.physics.arcade.enable(player);
     player.body.allowGravity = false;
     player.body.collideWorldBounds = true;
+    
+    minions.enableBody = true;
     
     game.physics.arcade.enable(nexus);
     nexus.immovable = true;
@@ -62,31 +65,33 @@ function create() {
 }
     
 function update() {  
-    if (game.input.mousePointer.isDown)
-    {
+    if (game.input.mousePointer.isDown){
         playerDest = new Phaser.Point(game.input.mousePointer.x, game.input.mousePointer.y);
     }
     
-    if (Math.abs(player.x - playerDest.x) <= 5 && 
-        Math.abs(player.y - playerDest.y) <= 5)
-    {
+    if (Math.abs(player.x - playerDest.x) <= 3 && 
+        Math.abs(player.y - playerDest.y) <= 3){
         player.body.velocity.setTo(0, 0);
     } else {
         game.physics.arcade.moveToXY(player, playerDest.x, playerDest.y, 120);
     }
     
     minions.forEachAlive(function(minion) {
-        game.physics.arcade.moveToXY(minion, nexus.x, nexus.y, 100);
+        if (Math.abs(minion.x - nexus.x) <= 3 && 
+            Math.abs(minion.y - nexus.y) <= 3) {
+            minion.body.velocity.setTo(0, 0);
+        } else {
+            game.physics.arcade.moveToXY(minion, nexus.x, nexus.y, 100); 
         }
-    )
+    })
     game.physics.arcade.collide(player, nexus);
 }
    
 function spawnMinion() {
     minion = minions.create(0, 0, 'minion');
+    minion.anchor.setTo(0.5);
     minion.scale.set(0.5);
     minion.alignIn(game.world.bounds, Phaser.TOP_RIGHT);
-    
 }
 </script>
 
