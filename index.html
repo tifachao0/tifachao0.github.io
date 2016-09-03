@@ -13,42 +13,34 @@
 <body>
 
 <script type="text/javascript">
-    
-var GAME_WIDTH = 600;
-var GAME_HEIGHT = 600;
 
-var game = new Phaser.Game(GAME_WIDTH, GAME_HEIGHT, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-    
-var nexus;
-var nexusHealth;
-    
-var minions;
-    
-var player;
-var playerDest;
+var game = new Phaser.Game(600, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
     
 function preload() {
     game.load.image('nexus', 'assets/nexus.png');
     game.load.image('minion', 'assets/melee_minion.png');
     game.load.image('teemo', 'assets/teemo.png');
+    game.load.image('dart', 'assets/dart.png');
 }
 
 function create() {  
     game.stage.backgroundColor = '#555555';
     
-    // add sprites
+    // add sprites ////////////////////////////////////////////////////////////
     nexus = game.add.sprite(0, 0, 'nexus');
     minions = game.add.group();
     player = game.add.sprite(0, 0, 'teemo');
+    darts = game.add.weapon(10, 'dart');
     
     player.anchor.set(0.5);
     player.scale.set(2);
     player.alignIn(game.world.bounds, Phaser.CENTER);
+    playerDest = new Phaser.Point(game.world.centerX, game.world.centerY);
     
     nexus.anchor.setTo(0.5);
     nexus.alignIn(game.world.bounds, Phaser.BOTTOM_LEFT);
     
-    // start physics engine
+    // start physics engine ///////////////////////////////////////////////////
     game.physics.arcade.enable(player);
     player.body.allowGravity = false;
     player.body.collideWorldBounds = true;
@@ -59,12 +51,19 @@ function create() {
     nexus.immovable = true;
     nexus.body.moves = false;
     
-    playerDest = new Phaser.Point(game.world.centerX, game.world.centerY);
+    // darts config ///////////////////////////////////////////////////////////
+    darts.bulletSpeed = 250;
+    darts.bulletLifespan = 1000;
+    darts.fireRate = 200;
+    darts.trackSprite(player);
+    darts.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
+    dartButton = game.input.keyboard.addKey(Phaser.KeyCode.Q);
     
     game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, spawnMinion, this);
 }
     
-function update() {  
+function update() { 
+    // player updates /////////////////////////////////////////////////////////
     if (game.input.mousePointer.isDown){
         playerDest = new Phaser.Point(game.input.mousePointer.x, game.input.mousePointer.y);
     }
@@ -76,6 +75,7 @@ function update() {
         game.physics.arcade.moveToXY(player, playerDest.x, playerDest.y, 120);
     }
     
+    // minion updates /////////////////////////////////////////////////////////
     minions.forEachAlive(function(minion) {
         if (Math.abs(minion.x - nexus.x) <= 3 && 
             Math.abs(minion.y - nexus.y) <= 3) {
@@ -84,6 +84,18 @@ function update() {
             game.physics.arcade.moveToXY(minion, nexus.x, nexus.y, 100); 
         }
     })
+    
+    // weapon updates /////////////////////////////////////////////////////////
+    darts.fireAngle = setDartFireAngle();
+    /*
+    darts.forEachAlive(function(dart) {
+        dart.angle = 
+    }) 
+    */
+    if (dartButton.isDown) {
+        darts.fire();
+    }
+
     game.physics.arcade.collide(player, nexus);
 }
    
@@ -92,6 +104,10 @@ function spawnMinion() {
     minion.anchor.setTo(0.5);
     minion.scale.set(0.5);
     minion.alignIn(game.world.bounds, Phaser.TOP_RIGHT);
+}
+    
+function setDartFireAngle() {
+    return Math.atan2(game.input.mousePointer.y - darts.y, game.input.mousePointer.x - darts.x) * 180 / Math.PI;
 }
 </script>
 
