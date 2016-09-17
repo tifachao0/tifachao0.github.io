@@ -1,0 +1,193 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Defend the Nexus!</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin : auto;
+            text-align : center; 
+            vertical-align : middle;
+        }
+        canvas {   
+            margin : auto;
+            display : block;   
+        }
+    </style>
+</head>
+<body>
+    
+<h1>DEFEND THE NEXUS!</h1>
+<p>Click to move. Press Q to shoot.</p>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(600, 600, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
+    
+var player;
+var playerBaseVelocity = 120;
+    
+var nexus;
+var nexusHealthDisplayPrefix = 'Nexus Health: ';
+var nexusHealthDisplay;
+    
+var minions;
+var minionsTotal = 18;
+var minionsRemaining = minionsTotal;
+var minionsRemainingDisplayPrefix = 'Minions Remaining: ';
+var minionsRemainingDisplay;
+var minionsKilledOrAtNexus = 0;
+var minionBaseVelocity = 110;
+
+var darts;
+    
+function preload() {
+    game.load.image('nexus', 'assets/nexus.png');
+    game.load.image('minion', 'assets/melee_minion.png');
+    game.load.image('teemo', 'assets/teemo.png');
+    game.load.image('dart', 'assets/dart.png');
+}
+
+function create() {  
+    game.stage.backgroundColor = '#555555';
+    
+    // add sprites ////////////////////////////////////////////////////////////
+    nexus = game.add.sprite(0, 0, 'nexus');
+    minions = game.add.group();
+    player = game.add.sprite(0, 0, 'teemo');
+    darts = game.add.weapon(10, 'dart');
+    
+    player.anchor.set(0.5);
+    player.scale.set(2);
+    player.alignIn(game.world.bounds, Phaser.CENTER);
+    playerDest = new Phaser.Point(game.world.centerX, game.world.centerY);
+    
+    nexus.anchor.setTo(0.5);
+    nexus.alignIn(game.world.bounds, Phaser.BOTTOM_LEFT);
+    nexus.health = 3;
+    
+    // start physics engine ///////////////////////////////////////////////////
+    game.physics.enable([player,nexus], Phaser.Physics.ARCADE);
+    player.body.allowGravity = false;
+    player.body.collideWorldBounds = true;
+    
+    nexus.immovable = true;
+    nexus.body.moves = false;
+    
+    minions.enableBody = true;
+    minions.physicsBodyType = Phaser.Physics.ARCADE;
+    
+    // darts config ///////////////////////////////////////////////////////////
+    darts.bulletSpeed = 250;
+    darts.bulletLifespan = 1000;
+    darts.fireRate = 200;
+    darts.trackSprite(player);
+    darts.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
+    dartButton = game.input.keyboard.addKey(Phaser.KeyCode.Q);
+    
+    // text display ///////////////////////////////////////////////////////////
+    nexusHealthDisplay = game.add.text(0, 0, nexusHealthDisplayPrefix + nexus.health.toString(), { font: "20px Arial", fill: '#ffffff' });
+    minionsRemainingDisplay = game.add.text(0, 0, minionsRemainingDisplayPrefix + minionsRemaining.toString(), { font: "20px Arial", fill: '#ffff00' });
+    
+    nexusHealthDisplay.alignIn(game.world.bounds, Phaser.TOP_LEFT);
+    minionsRemainingDisplay.alignTo(nexusHealthDisplay, Phaser.BOTTOM_LEFT);
+    game.time.events.repeat(Phaser.Timer.SECOND * 2, minionsRemaining, spawnMinion, this);
+}
+    
+function update() {
+    
+    if (nexus.health == 0) {
+        
+    }
+    // player updates /////////////////////////////////////////////////////////
+    if (game.input.mousePointer.isDown){
+        playerDest = new Phaser.Point(game.input.mousePointer.x, game.input.mousePointer.y);
+    }
+    
+    if (Math.abs(player.x - playerDest.x) <= 3 && 
+        Math.abs(player.y - playerDest.y) <= 3){
+        player.body.velocity.setTo(0, 0);
+    } else {
+        game.physics.arcade.moveToXY(player, playerDest.x, playerDest.y, playerBaseVelocity);
+    }
+    
+    // weapon updates /////////////////////////////////////////////////////////
+    darts.fireAngle = setDartFireAngle();
+    if (dartButton.isDown) {
+        darts.fire();
+    }
+    
+    // minion updates /////////////////////////////////////////////////////////
+    minions.forEachAlive(function(minion) {
+        if (Math.abs(minion.x - nexus.x) <= 3 && 
+            Math.abs(minion.y - nexus.y) <= 3) {
+            if (!minion.isAtNexus) {
+                nexus.damage(1);
+                nexusHealthDisplay.setText(nexusHealthDisplayPrefix + nexus.health.toString());
+                minion.body.velocity.setTo(0, 0);
+                minion.isAtNexus = true;
+                minionsKilledOrAtNexus += 1;
+            }
+        } else {
+            game.physics.arcade.moveToXY(minion, nexus.x, nexus.y, minionBaseVelocity); 
+        }
+    })
+
+    // state //////////////////////////////////////////////////////////////////
+    if (minionsKilledOrAtNexus == minionsTotal && nexus.health > 0) {
+        nexusHealthDisplay.setText('VICTORY');
+    }
+    else if (nexus.health == 0) {
+        nexusHealthDisplay.setText('DEFEAT');
+    }
+    game.physics.arcade.collide(player, nexus);
+    game.physics.arcade.overlap(darts.bullets, minions, dartMinionCollisionHandler, null, this);
+}
+ 
+///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// HELPERS ///////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+function dartMinionCollisionHandler(dart, minion) {
+    dart.kill();
+    if (!minion.isAtNexus) {
+        minion.kill();
+        minionsKilledOrAtNexus += 1;
+    }
+}
+    
+function spawnMinion() {
+    // randomly spawn at top or right edge of world boundaries
+    var spawnAtTop = Math.round(Math.random());
+    var spawnX;
+    var spawnY;
+    if (spawnAtTop) {
+        spawnX = Math.round(Math.random() * game.width)
+        spawnY = 0;
+    } else {
+        spawnX = game.width;
+        spawnY = Math.round(Math.random() * game.height);
+    }
+
+    minion = minions.create(spawnX, spawnY, 'minion');
+    minion.isAtNexus = false;
+    minion.anchor.setTo(0.5);
+    minion.scale.set(0.5);
+    // offset minion so that it spawns offscreen
+    if (spawnAtTop) {
+        minion.y -= minion.height / 2;
+    } else {
+        minion.x += minion.width / 2;
+    }
+    
+    minionsRemaining -= 1;
+    minionsRemainingDisplay.setText(minionsRemainingDisplayPrefix + minionsRemaining.toString())
+}
+    
+function setDartFireAngle() {
+    return Math.atan2(game.input.mousePointer.y - darts.y, game.input.mousePointer.x - darts.x) * 180 / Math.PI;
+}
+</script>
+
+</body>
+</html>
