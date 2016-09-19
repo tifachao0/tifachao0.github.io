@@ -1,0 +1,20 @@
+body {
+    background-color: antiquewhite;
+}
+
+p {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.jumbotron-custom {
+    background-image: url(http://4.bp.blogspot.com/-NpdAF0rUFJY/UmldeRg2_PI/AAAAAAAAITk/1uYT5HteM6I/s1600/Zyra_Splash_2.jpg);
+    background-size: cover;
+    padding-left: 10px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    color: red;
+}
+
+.nav-custom {
+    color: #FFFFFF;
+    background-color: mediumaquamarine;
+}
