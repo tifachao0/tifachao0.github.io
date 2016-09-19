@@ -2,6 +2,10 @@ body {
     background-color: antiquewhite;
 }
 
+h1 {
+    text-align: center;
+}
+
 p {
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
@@ -11,10 +15,11 @@ p {
     background-size: cover;
     padding-left: 10px;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    color: red;
+    color: aquamarine;
 }
 
 .nav-custom {
-    color: #FFFFFF;
+    color: white;
     background-color: mediumaquamarine;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
