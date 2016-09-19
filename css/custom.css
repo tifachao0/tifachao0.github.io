@@ -1,25 +1,30 @@
 body {
-    background-color: antiquewhite;
+    background-color: darkslategrey;
 }
 
-h1 {
-    text-align: center;
+h1, h2, h3 {
+    font-family: Georgia, serif;
+    color: white;
 }
 
 p {
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    color: azure;
 }
 
-.jumbotron-custom {
-    background-image: url(http://4.bp.blogspot.com/-NpdAF0rUFJY/UmldeRg2_PI/AAAAAAAAITk/1uYT5HteM6I/s1600/Zyra_Splash_2.jpg);
-    background-size: cover;
-    padding-left: 10px;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+li:active {
     color: aquamarine;
 }
 
-.nav-custom {
-    color: white;
-    background-color: mediumaquamarine;
+.jumbotron-custom {
+    background-size: cover;
+    padding-left: 10px;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.nav-custom {
+    background-color: none;
+    font-size: 20px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    color: red;
 }
