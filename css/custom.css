@@ -16,6 +16,11 @@ li:active {
     color: aquamarine;
 }
 
+.portfolio-item  {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .jumbotron-custom {
     background-size: cover;
     padding-left: 10px;
