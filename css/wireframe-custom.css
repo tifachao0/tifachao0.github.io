@@ -1,9 +1,22 @@
-.portfolio-item  {
+.thumbnail  {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.diagram-item {
+.intro-img img {
+    display: block;
+    margin: auto;
+}
+
+.intro-content {
+    margin: auto;
+}
+
+h1, h2, h3, p {
+    font-family: 'Quicksand', sans-serif;
+}
+
+ul li {
     font-family: 'Quicksand', sans-serif;
 }
 
