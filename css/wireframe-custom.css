@@ -1,26 +1,80 @@
-.thumbnail  {
-    margin-top: 5px;
-    margin-bottom: 5px;
+body {
+    background-color: #404040;
 }
 
-.intro-img img {
+h1, h2, h3, h4, h5, h6 {
+    color: deeppink;
+    font-family: 'Quicksand', sans-serif;
+    font-weight:400;
+    text-align: center;
+}
+
+p {
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight:300;
+    text-align: justify;
+}
+
+a:link {
+    color: aqua;
+}
+
+a:visited {
+    color: aqua;
+}
+
+a:hover {
+    color: springgreen;
+}
+
+a:active {
+    color: springgreen;
+}
+
+ul li {
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight:300;
+}
+
+img {
+    max-height: 500px;
     display: block;
     margin: auto;
+}
+
+.carousel img {
+  max-width: 80%;
+}
+
+.artist-heading {
+    text-align: left;
+}
+
+.index-heading {
+    font-family: 'Roboto Slab', serif;
 }
 
 .intro-content {
     margin: auto;
 }
 
-h1, h2, h3, p {
-    font-family: 'Quicksand', sans-serif;
-}
-
-ul li {
-    font-family: 'Quicksand', sans-serif;
+.modal h1 {
+    text-align: center;
+    font-family: 'Tinos', serif;
 }
 
 .navbar {
+    text-decoration-color: cyan;
     font-family: 'Kaushan Script', cursive;
+}
+
+.navbar li {
+    font-family: 'Kaushan Script', cursive;
+}
+
+.thumbnail  {
+    margin: 5px;
 }
 

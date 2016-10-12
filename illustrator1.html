@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Homepage</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand|Kaushan+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:300, 400|Kaushan+Script">
     <link rel="stylesheet" type="text/css" href="../css/wireframe-custom.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   </head>
   <body>
     <!-- Navbar -->
-        <div class="navbar navbar-default navbar-fixed-left">
+        <div class="navbar navbar-inverse navbar-fixed-left">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> </button>
@@ -21,22 +21,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                <a class="navbar-brand" href="#">Digital Artists</a>
+                <a class="navbar-brand" href="index.html">Digital Paintings</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
                         <li><a href="introduction.html">Introduction</a></li>
                         <li><a href="materials.html">Materials</a></li>
                          <li class="dropdown">
-                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Illustrators<span class="caret"></span></a>
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Artists<span class="caret"></span></a>
                              <ul class="dropdown-menu" role="menu">
-                                 <li><a class="active" href="#">Artist 1</a></li>
-                                 <li><a href="illustrator2.html">Artist 2</a></li>
+                                 <li><a class="active" href="#">Charlie Bowater</a></li>
+                                 <li><a href="illustrator2.html">Peter Mohrbacher</a></li>
                              </ul>
                          </li>
                          <li class="dropdown">
-                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Concept Artists<span class="caret"></span></a>
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Popular Culture<span class="caret"></span></a>
                              <ul class="dropdown-menu" role="menu">
                                  <li><a href="#">Artist 1</a></li>
                                  <li><a href="#">Artist 2</a></li>
@@ -47,68 +46,70 @@
             </div>
         </div>
 
-    <div class="container profile">
+    <div class="container">
         <div class="row">
             <div class="col-md-3 col-xs-12">
                 <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/300x400" alt="">
+                    <img class="img-responsive intro-img" src="imgs/bowater.jpg" alt="Charlie Bowater">
                 </a>
             </div>
             <div class="col-md-9 col-xs-12">
-                <h1 style=>Artist Name</h1>
-                <p><a href="#">Link to Portfolio</a></p>
+                <h1>Charlie Bowater</h1>
+                <h6>Illustrator &amp; Concept Artist</h6>
+                <h6 class=artist-heading><a href="http://www.charliebowater.net/">Personal Website</a></h6>
+                <h6 class=artist-heading><a href="https://www.artstation.com/artist/charliebowater">Artstation</a></h6>
                 <p>
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+                    Charlie Bowater is a professional artist from the United Kingdom who currently works as a Principal Artist at <a href="http://atomhawk.com/">Atomhawk</a>, a visual development and design company for games, film and digital media. In her free time, she completes illustrations and book covers and is known to read voraciously.
                 </p>
             </div>
         </div>
         <div>
             <h3>Artwork</h3>
+            <div class="col-md-3 col-xs-12 thumbnail">
+                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Little Red Riding Hood">
+                        <img class="img-responsive" src="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546fc6b8f5b7fd8fe6920/1473605939711/Little+Red.jpg?format=500w" alt="Little Red Riding Hood">
+                    </a>
+                </div>
             <div class="row">
-                <div class="col-md-3 col-xs-6 thumbnail">
-                    <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="">
+                <div class="col-md-3 col-xs-12 thumbnail">
+                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Monarch">
+                        <img class="img-responsive" src="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d54700be65946651a44939/1473676306907/Monarch.jpg?format=500w" alt="Monarch">
                     </a>
                 </div>
-                <div class="col-md-3 col-xs-6 thumbnail">
-                    <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="">
+                <div class="col-md-3 col-xs-12 thumbnail">
+                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Dream Eater">
+                        <img class="img-responsive" src="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546f56b8f5b7fd8fe68ff/1473600589178/DreamEater_Small.jpg?format=1000w" alt="Dream Eater">
                     </a>
                 </div>
-                <div class="col-md-3 col-xs-6 thumbnail">
-                    <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-xs-6 thumbnail">
-                    <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="">
+                <div class="col-md-3 col-xs-12 thumbnail">
+                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Equinox">
+                        <img class="img-responsive" src="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546f5d482e9b1b36059c1/1473676306616/Equinox_Small.jpg?format=1000w" alt="Equinox">
                     </a>
                 </div>
             </div>
         </div>
-            <div class="row">
-                <div class="col-md-3 col-xs-6 thumbnail">
-                    <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="">
-                    </a>
+        <div class="modal fade" id="artwork-modal" tabindex="-1" role="dialog" aria-labelledby="artwork">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-title">
+                    <h1>Title</h1>
                 </div>
-                <div class="col-md-3 col-xs-6 thumbnail">
-                    <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-xs-6 thumbnail">
-                    <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-xs-6 thumbnail">
-                    <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="">
-                    </a>
+                <div class="modal-body">
+                    <img class="img-responsive" src="http://placehold.it/450x600" alt="Default">
                 </div>
             </div>
         </div>
+      </div>
+      </div>
+      <script>
+          $('#artwork-modal').on('show.bs.modal', function (event) {
+            var thumbnail = $(event.relatedTarget)
+            var title = thumbnail.data('title')
+            //var img = thumbnail.getElementByClassName("img-responsive")
+            var modal = $(this)
+            modal.find('.modal-title').text(title)
+            //modal.find('.modal-body').append(src)
+})
+      </script>
   </body>
 </html>
