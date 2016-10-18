@@ -1,3 +1,19 @@
+@media (min-device-width : @screen-sm-min) {
+    
+    .carousel-custom {
+        height: 100px;
+        overflow: hidden;
+    }
+}
+
+@media (min-device-width : @screen-md-min) {
+    
+    .carousel-custom {
+        height: 500px;
+        overflow: hidden;
+    }
+}
+
 body {
     background-color: #404040;
 }
@@ -44,20 +60,12 @@ img {
     margin: auto;
 }
 
-.carousel img {
-  max-width: 80%;
-}
-
 .artist-heading {
     text-align: left;
 }
 
 .index-heading {
     font-family: 'Roboto Slab', serif;
-}
-
-.intro-content {
-    margin: auto;
 }
 
 .modal h1 {
@@ -74,7 +82,7 @@ img {
     font-family: 'Kaushan Script', cursive;
 }
 
-.thumbnail  {
+.img-thumbnail {
     margin: 5px;
 }
 
