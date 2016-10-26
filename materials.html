@@ -17,14 +17,15 @@
         <div class="navbar navbar-inverse navbar-fixed-left">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> </button>
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-button" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
                 <a class="navbar-brand" href="index.html">Digital Paintings</a>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse" id="navbar-collapse-button">
                     <ul class="nav navbar-nav">
                         <li><a href="introduction.html">Introduction</a></li>
                         <li><a class="active" href="#">Materials</a></li>
@@ -49,41 +50,100 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
-                    <h2>Applications (make this into a table/chart)</h2>
-                    <p> Below are some examples of image editing applications that are ideal for creating digital paintings.</p>
+                    <h2>Applications</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-8 col-xs-12">
                     <h4>Desktop</h4>
-                    <ul>
-                        <li>Adobe Photoshop (Windows, Mac) <a href="http://www.adobe.com/products/photoshop.html"> -&gt; Link</a></li>
-                        <li>Paint Tool SAI (Windows) <a href="https://www.systemax.jp/en/sai/"> -&gt; Link</a></li>
-                        <li>Mischief <a href="https://www.madewithmischief.com/"> -&gt; Link</a></li>
-                        <li>Gimp (Windows, Mac, Linux)<a href="https://www.gimp.org/downloads/"> -&gt; Link</a></li>
-                    </ul>
+                    <table class="table table-inverse">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Platform</th>
+                                <th>Payment</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Adobe Photoshop</th>
+                                <th>Windows, Mac</th>
+                                <th>Paid</th>
+                                <th><a href="http://www.adobe.com/products/photoshop.html"> adobe.com/products/photoshop.html</a></th>
+                            </tr>
+                            <tr>
+                                <th>Paint Tool SAI</th>
+                                <th>Windows</th>
+                                <th>Paid</th>
+                                <th><a href="https://www.systemax.jp/en/sai/"> systemax.jp/en/sai</a></th>
+                            </tr>
+                            <tr>
+                                <th>Gimp</th>
+                                <th>Linux</th>
+                                <th>Free</th>
+                                <th><a href="https://www.gimp.org/downloads/"> gimp.org</a></th>
+                            </tr>  
+                        </tbody>        
+                    </table>
                     <h4>Tablets</h4>
-                    <ul>
-                        <li>ProCreate (iPad) <a href="http://procreate.si/"> -&gt; Link</a></li>
-                        <li>ArtRage Touch (Windows) <a href="https://www.microsoft.com/en-us/store/p/artrage-touch/9wzdncrdmf3p"> -&gt; Link</a></li>
-                    </ul>
+                    <table class="table table-inverse">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Platform</th>
+                                <th>Payment</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Procreate</th>
+                                <th>iPad</th>
+                                <th>Paid</th>
+                                <th><a href="http://procreate.si/"> procreate.si/</a></th>
+                            </tr>
+                            <tr>
+                                <th>ArtRage Touch</th>
+                                <th>Windows</th>
+                                <th>Paid</th>
+                                <th><a href="https://www.microsoft.com/en-us/store/p/artrage-touch/9wzdncrdmf3p"> microsoft.com/en-us/store/p/artrage-touch/9wzdncrdmf3p</a></th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-md-4 col-xs-12">
-                    <img class="img-responsive" src="https://photoshoptrainingchannel.com/wp-content/uploads/2015/06/049-single-photoshop-cc-2015-new-features.jpg" alt="Photoshop CC">
+                    <img class="img-responsive" src="http://f.tqn.com/y/graphicssoft/1/W/T/I/6/Adobe-Photoshop-CS6-Extended_1.png" alt="Photoshop CS6">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 col-xs-12">
                     <h2>Hardware</h2>
-                    <p> Below are some recommended input devices. Using a mouse as an input device is <i>not</i> recommended.</p>
                 </div>
             </div>
             <div class="row intro-content">
                 <div class="col-md-8 col-xs-12">
-                    <ul>
-                        <li>Wacom Cintiq (Windows, Mac) <a href="http://www.wacom.com/en-us/products/pen-displays/cintiq-22-hd"> -&gt; Link</a></li>
-                        <li>Yiynova (Windows, Mac) <a href="http://www.yiynova.com/En/proddetails.php?proid=20&clsid=1?%3E"> -&gt; Link</a></li>
-                    </ul>
+                    <table class="table table-inverse">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Platform</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Wacom</th>
+                                <th>Windows, Mac</th>
+                                <th><a href="http://www.wacom.com"> wacom.com</a></th>
+                            </tr>
+                            <tr>
+                                <th>Huion</th>
+                                <th>Windows, Mac</th>
+                                <th><a href="http://www.huion.com/"> huion.com</a></th>
+                            </tr>        
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-md-4 col-xs-12">
                     <img class="img-responsive" src="http://static.trustedreviews.com/94/000023c17/6cb8/Cintiq22HD.jpg" alt="Wacom Cintiq">

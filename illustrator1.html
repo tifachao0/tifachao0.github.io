@@ -16,14 +16,15 @@
         <div class="navbar navbar-inverse navbar-fixed-left">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> </button>
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-button" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
                 <a class="navbar-brand" href="index.html">Digital Paintings</a>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse" id="navbar-collapse-button">
                     <ul class="nav navbar-nav">
                         <li><a href="introduction.html">Introduction</a></li>
                         <li><a href="materials.html">Materials</a></li>
@@ -67,22 +68,22 @@
             <h3>Artwork</h3>
             <div class="row">
                 <div class="col-md-3 col-xs-6">
-                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Little Red Riding Hood">
+                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Little Red Riding Hood" data-image="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546fc6b8f5b7fd8fe6920/1473605939711/Little+Red.jpg?format=500w">
                         <img class="img-responsive img-thumbnail" src="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546fc6b8f5b7fd8fe6920/1473605939711/Little+Red.jpg?format=500w" alt="Little Red Riding Hood">
                     </a>
                 </div>
                 <div class="col-md-3 col-xs-6">
-                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Monarch">
+                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Monarch" data-image="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d54700be65946651a44939/1473676306907/Monarch.jpg?format=500w">
                         <img class="img-responsive img-thumbnail" src="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d54700be65946651a44939/1473676306907/Monarch.jpg?format=500w" alt="Monarch">
                     </a>
                 </div>
                 <div class="col-md-3 col-xs-6">
-                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Dream Eater">
+                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Dream Eater" data-image="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546f56b8f5b7fd8fe68ff/1473600589178/DreamEater_Small.jpg?format=1000w">
                         <img class="img-responsive img-thumbnail" src="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546f56b8f5b7fd8fe68ff/1473600589178/DreamEater_Small.jpg?format=1000w" alt="Dream Eater">
                     </a>
                 </div>
                 <div class="col-md-3 col-xs-6">
-                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Equinox">
+                    <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Equinox" data-image="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546f5d482e9b1b36059c1/1473676306616/Equinox_Small.jpg?format=1000w">
                         <img class="img-responsive img-thumbnail" src="https://static1.squarespace.com/static/57d5444be58c62ac0e2b4f95/57d544e55016e199d1dbf5a9/57d546f5d482e9b1b36059c1/1473676306616/Equinox_Small.jpg?format=1000w" alt="Equinox">
                     </a>
                 </div>
@@ -91,11 +92,11 @@
         <div class="modal fade" id="artwork-modal" tabindex="-1" role="dialog" aria-labelledby="artwork">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-title">
-                    <h1>Title</h1>
+                <div class="modal-header">
+                    <h1 class="modal-title" id="artwork-modal-title"></h1>
                 </div>
                 <div class="modal-body">
-                    <img class="img-responsive" src="http://placehold.it/450x600" alt="Default">
+                    <img class="img-responsive" id="artwork-modal-image" src="">
                 </div>
             </div>
         </div>
@@ -103,12 +104,9 @@
       </div>
       <script>
           $('#artwork-modal').on('show.bs.modal', function (event) {
-            var thumbnail = $(event.relatedTarget)
-            var title = thumbnail.data('title')
-            //var img = thumbnail.getElementByClassName("img-responsive")
-            var modal = $(this)
-            modal.find('.modal-title').text(title)
-            //modal.find('.modal-body').append(src)
+            var $thumbnail = $(event.relatedTarget)
+            $('#artwork-modal-title').text($thumbnail.data('title'));
+            $('#artwork-modal-image').attr('src', $thumbnail.data("image"));
 })
       </script>
   </body>

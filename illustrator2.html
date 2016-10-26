@@ -16,14 +16,15 @@
         <div class="navbar navbar-inverse navbar-fixed-left">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> </button>
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-button" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
                 <a class="navbar-brand" href="index.html">Digital Paintings</a>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse" id="navbar-collapse-button">
                     <ul class="nav navbar-nav">
                         <li><a href="introduction.html">Introduction</a></li>
                         <li><a href="materials.html">Materials</a></li>
@@ -67,49 +68,46 @@
                 <h3>Artwork</h3>
                 <div class="row">
                     <div class="col-md-3 col-xs-6">
-                        <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Samyaza, Angel of Pride">
+                        <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Samyaza, Angel of Pride" data-image="https://static1.squarespace.com/static/52b99140e4b02ffea75851ab/575d97df2b8ddeb3fba304b8/575d98332eeb81ff5b6830f3/1465754394519/samayazaf.jpg?format=750w" alt="Samyaza, Angel of Pride">
                             <img class="img-responsive img-thumbnail" src="https://static1.squarespace.com/static/52b99140e4b02ffea75851ab/575d97df2b8ddeb3fba304b8/575d98332eeb81ff5b6830f3/1465754394519/samayazaf.jpg?format=750w" alt="Samyaza, Angel of Pride">
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
-                        <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Gadreel, Angel of War">
+                        <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Gadreel, Angel of War" data-image="https://static1.squarespace.com/static/52b99140e4b02ffea75851ab/575d97df2b8ddeb3fba304b8/575d982d01dbae869aad6b56/1465754353503/gadreelF.jpg?format=500w">
                             <img class="img-responsive img-thumbnail" src="https://static1.squarespace.com/static/52b99140e4b02ffea75851ab/575d97df2b8ddeb3fba304b8/575d982d01dbae869aad6b56/1465754353503/gadreelF.jpg?format=500w" alt="Gadreel, Angel of War">
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
-                        <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Binah, Emanation of Knowledge">
+                        <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Binah, Emanation of Knowledge" data-image="https://static1.squarespace.com/static/52b99140e4b02ffea75851ab/575d97ed3c44d80831980e0b/575d9f6545bf2196ee6ddcc1/1465754609764/binahF.jpg?format=500w">
                             <img class="img-responsive img-thumbnail" src="https://static1.squarespace.com/static/52b99140e4b02ffea75851ab/575d97ed3c44d80831980e0b/575d9f6545bf2196ee6ddcc1/1465754609764/binahF.jpg?format=500w" alt="Binah, Emanation of Knowledge">
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
-                        <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Eistibus, Angel of Divination">
+                        <a href="#" data-toggle="modal" data-target="#artwork-modal" data-title="Eistibus, Angel of Divination" data-image="https://static1.squarespace.com/static/52b99140e4b02ffea75851ab/575d97d12b8ddeb3fba30484/575d9e88d210b82f783d57a7/1465755143901/eistibus3F.jpg?format=500w">
                             <img class="img-responsive img-thumbnail" src="https://static1.squarespace.com/static/52b99140e4b02ffea75851ab/575d97d12b8ddeb3fba30484/575d9e88d210b82f783d57a7/1465755143901/eistibus3F.jpg?format=500w" alt="Eistibus, Angel of Divination">
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="artwork-modal" tabindex="-1" role="dialog" aria-labelledby="artwork">
+        <div class="modal fade" id="artwork-modal" tabindex="-1" role="dialog" aria-labelledby="artwork">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-title">
-                        <h1>Title</h1>
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="artwork-modal-title"></h1>
                     </div>
                     <div class="modal-body">
-                        <img class="img-responsive" src="http://placehold.it/450x600" alt="Default">
+                        <img class="img-responsive" id="artwork-modal-image" src="">
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
       </div>
       <script>
           $('#artwork-modal').on('show.bs.modal', function (event) {
-            var thumbnail = $(event.relatedTarget)
-            var title = thumbnail.data('title')
-            //var img = thumbnail.getElementByClassName("img-responsive")
-            var modal = $(this)
-            modal.find('.modal-title').text(title)
-            //modal.find('.modal-body').append(src)
-})
+            var $thumbnail = $(event.relatedTarget)
+            $('#artwork-modal-title').text($thumbnail.data('title'));
+            $('#artwork-modal-image').attr('src', $thumbnail.data("image"));
+          })
       </script>
   </body>
 </html>

@@ -18,17 +18,23 @@ body {
     background-color: #404040;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, thead tr {
     color: deeppink;
     font-family: 'Quicksand', sans-serif;
     font-weight:400;
+}
+
+h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-p {
+p, tbody tr {
     color: white;
     font-family: 'Quicksand', sans-serif;
     font-weight:300;
+}
+
+p {
     text-align: justify;
 }
 
