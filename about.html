@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Iris Origami</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/custom.css">
+        <link href="https://fonts.googleapis.com/css?Abril+Fatface|Yrsa" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <header class="hidden-xs">
+            <div class="jumbotron">
+                <h1>About</h1>
+            </div>
+        </header>
+        <nav id="nav" class="navbar" data-spy="affix" data-offset-top="165">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-button" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand visible-xs" href="index.html">
+                    <img src="imgs/flower-icon.png"></a>
+                <a class="navbar-brand hidden-xs" href="index.html">
+                    <img src="imgs/flower-icon.png"> IRIS ORIGAMI</a>
+                <form onsubmit="doNothing(); return false;" class="navbar-form pull-left">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="SEARCH...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-collapse-button">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" class="active">ABOUT</a></li>
+                    <li><a href="basics.html">BASICS</a></li>
+                     <li class="dropdown">
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">MODELS<span class="caret"></span></a>
+                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" role="menu">
+                             <li><a href="#">Popular</a></li>
+                             <li role="separator" class="divider"></li>
+                             <li><a href="#">Birds</a></li>
+                             <li><a href="iris.html">Flowers</a></li>
+                         </ul>
+                     </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <img class="img-responsive" src="imgs/folding_origami.jpg" alt="Folding Origami">
+                </div>
+                <div class="col-xs-12 col-md-8">
+                    <h1> Step 1: Create </h1>
+                    <p><i>Iris Origami</i> is a website where you can learn how to fold your favorite origami animals, flowers, vehicles and more! Decorate your room, create a bouquet, give a gift to a friend or family member - there are many ways to incorporate origami into your everyday life. </p>
+                    <p> If you are new to folding origami or looking for a refresher, you can learn about stores that supply origami paper and origami diagram notation <a href="basics.html">here.</a></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    <img class="img-responsive" src="imgs/manycranes.jpg" alt="Origami Cranes">
+                </div>
+                <div class="col-xs-12 col-md-8">
+                    <h1> Step 2: Share </h1>
+                    <p>Other users from around the world, from first-timers to hobbyists, are also learning how to fold origami with you! Share your creations online by uploading photographs for the origami model of your choice. You can also view the origami models that other users have created.
+                </div>
+            </div>
+            <hr>
+        </div>
+    </body>
+<script language="javascript">
+        function doNothing(){}
+    </script>
+</html>
