@@ -116,17 +116,16 @@ img {
 }
 
 .filter-result-info {
+    padding: 0;
     text-align: left;
     font-family: 'Yrsa', serif;  
-    font-size: 12px;
-    font-size: 2vmin;
+    font-size: 14px;
 }
 
-.filter-result-info ul {
-    color: floralwhite;
-}
-
-.filter-result-info li {
+.filter-result-info ul, li {
+    list-style: none;
+    list-style-position: inside;
+    padding: 0;
     color: floralwhite;
 }
 
