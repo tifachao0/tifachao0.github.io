@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?Abril+Fatface|Yrsa" rel="stylesheet">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/mixitup.min.js"></script>
     </head>
     <body>
         <header class="hidden-xs">
@@ -45,10 +46,10 @@
                      <li class="dropdown">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">MODELS<span class="caret"></span></a>
                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" role="menu">
-                             <li><a href="#">Popular</a></li>
+                             <li><a href="#">Find Model</a></li>
                              <li role="separator" class="divider"></li>
                              <li><a href="#">Birds</a></li>
-                             <li><a class="active" href="#">Flowers</a></li>
+                             <li><a class="active" href="iris.html">Flowers</a></li>
                          </ul>
                      </li>
                 </ul>
@@ -56,51 +57,51 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-12 col-md-3">
-                    <ul class="hidden-xs" id="menu">
-                        <li><a href="#model-video">Step-by-step Video</a></li>
-                        <li><a href="#model-diagram">Step-by-step Diagrams</a></li>
-                        <li><a href="#model-user-submissions">User Submissions</a></li>
-                        <li>Upload your Submission</li>
-                    </ul>
+                <div class="col-xs-12 col-md-3 btn-group-wrapper">
+                    <h1>Filters</h1>
+                    <div class="btn-group-vertical controls" role="group" aria-label="filter-buttons">
+                        <button type="button" class="btn btn-lg btn-danger btn-block control" data-filter="all">All</button>
+                        <button type="button" class="btn btn-lg btn-danger btn-block control" data-toggle=".bird">Birds</button>
+                        <button type="button" class="btn btn-lg btn-danger btn-block control" data-toggle=".flower">Flowers</button>
+                    </div>
                 </div>
                 <div class="col-xs-12 col-md-9">
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
-                            <a name="model-video"></a>
-                            <h1>Video</h1>
-                            <div class="video-container">
-                                <iframe width="640" height="360" src="https://www.youtube.com/embed/8mo78XPtaIc" frameborder="0" allowfullscreen></iframe>
-                            </div>        
-                            <hr>
-                            
-                            <a name="model-diagram"></a>
-                            <h1>Diagram</h1>
-                            <img class="img-responsive" src="imgs/iris_diagram.jpg" alt="Iris diagram">
-                            <hr>
-                        
-                            <a name="model-user-submissions"></a>
-                            <h1>User Submissions</h1>
-                            <div class="row">
-                                <div class="col-xs-6 col-md-3">
-                                    <h4>Igor</h4>
-                                    <img class="img-responsive model-img" src="imgs/iris1.jpg" alt="user submission 1">
+                            <h1>Models</h1>
+                            <div class="container">
+                                <div class="col-xs-12 col-md-3 mix flower">
+                                    <a href=iris.html><h4>Iris</h4>
+                                        <div class="row filter-backdrop">
+                                            <div class="col-xs-12 col-md-12">
+                                                <img class="img-responsive filter-result-img" src="imgs/LilyRed.png" alt="iris thumbnail">
+                                                <ul class="filter-result-info">
+                                                    <li><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Medium</li>
+                                                    <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Dec. 12th 2016</li>
+                                                    <li><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Flowers</li>
+                                                    <li><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Easy/Intermediate</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="col-xs-6 col-md-3">
-                                    <h4>Ingrid</h4>
-                                    <img class="img-responsive model-img" src="imgs/iris2.jpg" alt="user submission  2">
-                                </div>
-                                <div class="col-xs-6 col-md-3">
-                                    <h4>Irene</h4>
-                                    <img class="img-responsive model-img" src="imgs/iris3.jpg" alt="user submission  3">
-                                </div>
-                                 <div class="col-xs-6 col-md-3">
-                                     <h4>Isaac</h4>
-                                    <img class="img-responsive model-img" src="imgs/iris4.jpg" alt="user submission  4">
+                                <div class="col-xs-12 col-md-3 mix bird">
+                                    <a href=crane.html><h4>Crane</h4>
+                                        <div class="row filter-backdrop">
+                                            <div class="col-xs-12 col-md-12">
+                                                <img class="img-responsive filter-result-img" src="imgs/crane_thumb.jpg" alt="iris thumbnail">
+                                                <ul class="filter-result-info">
+                                                    <li><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>High</li>
+                                                    <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Dec. 12th 2016</li>
+                                                    <li><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Birds</li>
+                                                    <li><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Easy/Intermediate</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
-                            <hr>
-                        </div> <!-- user submissions -->   
+                        </div>  
                     </div>
                 </div>
             </div>
@@ -108,5 +109,7 @@
     </body>
 <script language="javascript">
         function doNothing(){}
+        var containerMix = document.querySelector('.container');
+        var mixer = mixitup(containerMix);
     </script>
 </html>

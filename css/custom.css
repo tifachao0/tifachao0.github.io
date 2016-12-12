@@ -26,11 +26,11 @@ h2 {
     font-size: 3vmax;
 }
 
-#menu ul {
+ul {
     list-style: none;
 }
 
-#menu li {
+li {
     list-style-type: none;
 }
 
@@ -45,6 +45,15 @@ hr {
 img {
     display: block;
     margin: auto;
+}
+
+.btn-group-vertical {
+    text-align: center;
+    display:inline-block;
+}
+
+.btn-group-wrapper {
+    text-align: center;
 }
 
 .carousel-img {
@@ -75,11 +84,14 @@ img {
       padding-top: 300px;
 }
 
-.dropdown-menu {
-    background-color: #2a2a2a;    
+.filter-backdrop {
+    margin: 5px;
+    text-align: center;
+    background-color: #3d3c39;
 }
 
-.dropdown-menu .divider {
+.dropdown-menu {
+    background-color: #2a2a2a;    
 }
 
 .dropdown-menu > li > a:link, .dropdown-menu > li > a:visited {
@@ -94,6 +106,28 @@ img {
 
 .dropdown-menu > li {
     font-family: 'Yrsa', serif;
+}
+
+.filter-result-img {
+    text-align: center;
+    display:inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.filter-result-info {
+    text-align: left;
+    font-family: 'Yrsa', serif;  
+    font-size: 12px;
+    font-size: 2vmin;
+}
+
+.filter-result-info ul {
+    color: floralwhite;
+}
+
+.filter-result-info li {
+    color: floralwhite;
 }
 
 .index-heading {
