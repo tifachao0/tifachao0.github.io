@@ -26,6 +26,11 @@ h2 {
     font-size: 3vmax;
 }
 
+h3 {
+    font-size: 24px;
+    font-size: 2.5vmax;
+}
+
 ul {
     list-style: none;
 }
